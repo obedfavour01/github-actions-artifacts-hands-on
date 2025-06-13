@@ -22,6 +22,9 @@ jobs:
   download:
     needs: build
     runs-on: ubuntu-latest
+    concurrency: 
+      group: prod-download
+      cancel-in-progress: true
 
     steps:
       
@@ -34,4 +37,4 @@ jobs:
       - name: Display content of the text file
         run: |
           cat ./artifacts/hello.txt
-          sleep 60s
+          sleep 180s
