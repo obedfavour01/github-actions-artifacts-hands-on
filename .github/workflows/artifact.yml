@@ -1,6 +1,8 @@
 name: Workflow Demo
 
-on: workflow_dispatch
+on: 
+  push:
+  workflow_dispatch:
 
 jobs:
   build:
@@ -19,7 +21,9 @@ jobs:
         name: hello-artifact
         path: hello.txt
 
+
   download:
+    if: github.ref == 'refs/head/main'
     needs: build
     runs-on: ubuntu-latest
     concurrency: 
